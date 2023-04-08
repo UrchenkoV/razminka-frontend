@@ -1,9 +1,21 @@
 import CommentsArea from "@/components/CommentsArea";
 import MainHeader from "@/components/MainHeader";
 import MainSidebar from "@/components/MainSidebar";
+import clsx from "clsx";
 import React, { FC, PropsWithChildren } from "react";
 
-const MainLayout: FC<PropsWithChildren> = ({ children }) => {
+interface IMainLayout {
+  hideComments?: boolean;
+  fullWidthConteiner?: boolean;
+  className?: string;
+}
+
+const MainLayout: FC<PropsWithChildren<IMainLayout>> = ({
+  hideComments,
+  fullWidthConteiner,
+  className,
+  children,
+}) => {
   return (
     <div className="bg-gray-50">
       <MainHeader />
@@ -11,9 +23,17 @@ const MainLayout: FC<PropsWithChildren> = ({ children }) => {
       <div className="flex justify-between">
         <MainSidebar />
 
-        <div className="px-4">{children}</div>
+        <div
+          className={clsx(
+            "px-4 my-8 w-full",
+            fullWidthConteiner ? "max-w-5xl mx-auto" : "max-w-2xl",
+            className
+          )}
+        >
+          {children}
+        </div>
 
-        <CommentsArea />
+        {!hideComments && <CommentsArea />}
       </div>
     </div>
   );
