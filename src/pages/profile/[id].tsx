@@ -1,5 +1,5 @@
 import BaseButton from "@/components/BaseButton";
-import ProfileHeader from "@/components/Profile/ProfileHeader";
+import ProfileHeader from "@/components/pages/Profile/ProfileHeader";
 import MainLayout from "@/layouts/MainLayout";
 import Head from "next/head";
 import Link from "next/link";

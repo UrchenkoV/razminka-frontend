@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@editorjs/editorjs": "^2.26.5",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
     "@types/node": "18.15.11",
@@ -20,6 +21,7 @@
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-textarea-autosize": "^8.4.1",
     "typescript": "5.0.3"
   },
   "devDependencies": {

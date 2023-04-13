@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import BaseButton from "../BaseButton";
+import BaseButton from "../../BaseButton";
 import { Cog6ToothIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import clsx from "clsx";

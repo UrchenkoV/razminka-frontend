@@ -7,12 +7,14 @@ import React, { FC, PropsWithChildren } from "react";
 interface IMainLayout {
   hideComments?: boolean;
   fullWidthConteiner?: boolean;
+  largeWidthConteiner?: boolean;
   className?: string;
 }
 
 const MainLayout: FC<PropsWithChildren<IMainLayout>> = ({
   hideComments,
   fullWidthConteiner,
+  largeWidthConteiner,
   className,
   children,
 }) => {
@@ -26,7 +28,11 @@ const MainLayout: FC<PropsWithChildren<IMainLayout>> = ({
         <div
           className={clsx(
             "px-4 my-8 w-full",
-            fullWidthConteiner ? "max-w-5xl mx-auto" : "max-w-2xl",
+            largeWidthConteiner
+              ? "max-w-5xl mx-auto"
+              : fullWidthConteiner
+              ? ""
+              : "max-w-2xl",
             className
           )}
         >

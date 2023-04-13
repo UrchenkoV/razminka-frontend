@@ -11,7 +11,6 @@ import React, { FC } from "react";
 
 const MainSidebarMenu: FC = () => {
   const router = useRouter();
-  console.log(router);
 
   const links = [
     {

@@ -36,10 +36,9 @@ const MainHeaderProfile: FC = () => {
         >
           <Menu.Items className="absolute right-0 z-10 mt-2 w-480 w-56 origin-top-right rounded-md bg-white p-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             {profileLinks.map((item) => (
-              <Menu.Item>
+              <Menu.Item key={item.link}>
                 {({ active }) => (
                   <Link
-                    key={item.link}
                     href={item.link}
                     className={getClassNames(
                       active ? "bg-gray-100" : "",

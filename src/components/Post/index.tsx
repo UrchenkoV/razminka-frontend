@@ -1,6 +1,6 @@
 import React from "react";
 import PostHeader from "./PostHeader";
-import PostFooter from "./PostFooter";
+import PostFooter from "./PostActions";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -8,7 +8,7 @@ const Post = () => {
   return (
     <div className="bg-white shadow-sm rounded-xl py-5 flex flex-col gap-2">
       <PostHeader />
-      <Link href={"#"}>
+      <Link href={`/news/aaa`}>
         <div className="flex flex-col gap-3">
           <div className="px-5">
             <div className="text-slate-800 text-2xl font-bold mb-2">
@@ -35,7 +35,9 @@ const Post = () => {
         </div>
       </Link>
 
-      <PostFooter />
+      <div className="px-5">
+        <PostFooter />
+      </div>
     </div>
   );
 };
