@@ -25,7 +25,7 @@ const BaseInput: FC<IBaseInput> = ({
         placeholder={placeholder}
         onChange={(val) => valueOnChange(val.target.value)}
         className={clsx(
-          "block w-full rounded-md py-2 px-3 text-slate-700 shadow-sm border border-gray-300 focus:border-gray-700 duration-300 outline-none placeholder:text-gray-300 sm:text-sm sm:leading-6",
+          "block w-full rounded-md py-2 px-3 text-gray-800 shadow-sm border border-gray-300 focus:border-gray-700 duration-300 outline-none placeholder:text-gray-400 sm:text-sm sm:leading-6",
           className
         )}
       />

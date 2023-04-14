@@ -1,43 +1,40 @@
 import { getClassNames } from "@/utils/getClassName";
 import {
-  BookmarkIcon,
-  ClockIcon,
+  QueueListIcon,
   FireIcon,
   NewspaperIcon,
+  EnvelopeIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
 
+const links = [
+  {
+    title: "Лента",
+    icon: <NewspaperIcon className="w-6 h-6" />,
+    link: "/",
+  },
+  {
+    title: "Популярное",
+    icon: <FireIcon className="w-6 h-6" />,
+    link: "/rating",
+  },
+
+  {
+    title: "Сообщения",
+    icon: <EnvelopeIcon className="w-6 h-6" />,
+    link: "/messages",
+  },
+  {
+    title: "Подписки",
+    icon: <QueueListIcon className="w-6 h-6" />,
+    link: "/follows",
+  },
+];
+
 const MainSidebarMenu: FC = () => {
   const router = useRouter();
-
-  const links = [
-    {
-      title: "Популярное",
-      icon: <FireIcon className="w-6 h-6" />,
-      link: "/rating",
-      active: true,
-    },
-    {
-      title: "Лента",
-      icon: <NewspaperIcon className="w-6 h-6" />,
-      link: "/rating",
-      active: false,
-    },
-    {
-      title: "Свежее",
-      icon: <ClockIcon className="w-6 h-6" />,
-      link: "/rating",
-      active: false,
-    },
-    {
-      title: "Закладки",
-      icon: <BookmarkIcon className="w-6 h-6" />,
-      link: "/rating",
-      active: false,
-    },
-  ];
 
   return (
     <div className="flex flex-col gap-1">
@@ -46,7 +43,7 @@ const MainSidebarMenu: FC = () => {
           href={item.link}
           key={item.title}
           className={getClassNames(
-            "flex w-full justify-between  py-2 px-3 rounded-lg text-slate-700  duration-300 items-center",
+            "flex w-full justify-between  py-2 px-3 rounded-lg text-gray-700  duration-300 items-center",
             router.pathname === item.link
               ? "bg-white shadow-sm"
               : "hover:bg-white"
@@ -60,7 +57,7 @@ const MainSidebarMenu: FC = () => {
               )}
             >
               {item.icon}
-              <span className="text-base text-slate-700">{item.title}</span>
+              <span className="text-base text-gray-700">{item.title}</span>
             </div>
           </>
         </Link>

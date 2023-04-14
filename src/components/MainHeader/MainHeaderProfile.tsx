@@ -12,7 +12,12 @@ const MainHeaderProfile: FC = () => {
   return (
     <div className="profile flex items-center gap-1 cursor-pointer">
       <Link href={`/profile/1`}>
-        <UserIcon className="w-6 h-6 text-slate-700 hover:text-blue-500 duration-300" />
+        <div className="w-10 h-10 rounded-xl overflow-hidden">
+          <img
+            src={`https://leonardo.osnova.io/38481965-da22-586c-98ed-62bfcdea1d8e/-/format/webp/`}
+            alt={``}
+          />
+        </div>
       </Link>
 
       <Menu as="div" className="relative">

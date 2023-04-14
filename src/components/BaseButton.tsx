@@ -20,7 +20,7 @@ const BaseButton: FC<PropsWithChildren<IBaseButton>> = ({
   return (
     <button
       className={clsx(
-        "inline-block shadow-sm duration-300 rounded-xl text-base py-2 px-3",
+        "inline-block shadow-sm duration-300 rounded-md text-base py-2 px-3",
         type === "white" && "bg-white text-gray-800 border",
         type === "blue" &&
           `bg-blue-500 text-white ${!isDisabled && "hover:bg-blue-600"}`,

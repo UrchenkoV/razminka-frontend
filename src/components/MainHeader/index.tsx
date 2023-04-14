@@ -1,11 +1,20 @@
-import { BellIcon, Bars3Icon, PlusIcon } from "@heroicons/react/24/outline";
+import {
+  BellIcon,
+  Bars3Icon,
+  PlusIcon,
+  UserIcon,
+} from "@heroicons/react/24/outline";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import BaseButton from "../BaseButton";
 import MainHeaderProfile from "./MainHeaderProfile";
+import BaseAuthModal from "../BaseAuthModal";
 
 const MainHeader: React.FC = () => {
+  const [isOpen, setIsOpen] = React.useState(true);
+  console.log(isOpen, "isOpen");
+
   return (
     <div className="h-14 bg-blue-200 flex items-center sticky top-0 left-0 w-full z-20">
       <div className="wrapper">
@@ -55,10 +64,20 @@ const MainHeader: React.FC = () => {
               />
             </div>
 
+            <div
+              onClick={() => setIsOpen(true)}
+              className="flex items-center gap-2 text-gray-700 hover:text-blue-500 duration-300 cursor-pointer"
+            >
+              <UserIcon className="w-6 h-6" />
+              <span className="font-bold mt-1">Войти</span>
+            </div>
+
             <MainHeaderProfile />
           </div>
         </div>
       </div>
+
+      <BaseAuthModal visible={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };
