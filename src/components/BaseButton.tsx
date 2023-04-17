@@ -1,11 +1,12 @@
 import clsx from "clsx";
-import React, { FC, MouseEventHandler, PropsWithChildren } from "react";
+import React, { ButtonHTMLAttributes, FC, PropsWithChildren } from "react";
 
 export interface IBaseButton {
   title?: string;
   className?: string;
-  type?: "white" | "blue" | "transparent";
-  isDisabled?: boolean;
+  type?: ButtonHTMLAttributes<HTMLButtonElement>["type"];
+  color?: "white" | "blue" | "transparent";
+  disabled?: boolean;
   onClick?: (e: any) => void;
 }
 
@@ -13,24 +14,26 @@ const BaseButton: FC<PropsWithChildren<IBaseButton>> = ({
   children,
   title,
   className,
-  type = "white",
-  isDisabled,
+  color = "white",
+  type = "button",
+  disabled,
   onClick,
 }) => {
   return (
     <button
+      type={type}
       className={clsx(
         "inline-block shadow-sm duration-300 rounded-md text-base py-2 px-3",
-        type === "white" && "bg-white text-gray-800 border",
-        type === "blue" &&
-          `bg-blue-500 text-white ${!isDisabled && "hover:bg-blue-600"}`,
-        type === "transparent" &&
+        color === "white" && "bg-white text-gray-800 border",
+        color === "blue" &&
+          `bg-blue-500 text-white ${!disabled && "hover:bg-blue-600"}`,
+        color === "transparent" &&
           "!shadow-none text-gray-700 hover:text-gray-500",
-        isDisabled && "disabled:opacity-70",
-        !isDisabled && "hover:shadow-md",
+        disabled && "disabled:opacity-70",
+        !disabled && "hover:shadow-md",
         className
       )}
-      disabled={isDisabled}
+      disabled={disabled}
       onClick={onClick}
     >
       {children || title}

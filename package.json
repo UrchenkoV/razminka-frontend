@@ -12,6 +12,7 @@
     "@editorjs/editorjs": "^2.26.5",
     "@headlessui/react": "^1.7.13",
     "@heroicons/react": "^2.0.17",
+    "@hookform/resolvers": "^3.0.1",
     "@types/node": "18.15.11",
     "@types/react": "18.0.32",
     "@types/react-dom": "18.0.11",
@@ -21,8 +22,10 @@
     "next": "13.2.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hook-form": "^7.43.9",
     "react-textarea-autosize": "^8.4.1",
-    "typescript": "5.0.3"
+    "typescript": "5.0.3",
+    "yup": "^1.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.14",

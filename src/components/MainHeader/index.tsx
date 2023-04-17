@@ -9,11 +9,10 @@ import Link from "next/link";
 import React from "react";
 import BaseButton from "../BaseButton";
 import MainHeaderProfile from "./MainHeaderProfile";
-import BaseAuthModal from "../BaseAuthModal";
+import AuthModal from "../AuthModal";
 
 const MainHeader: React.FC = () => {
-  const [isOpen, setIsOpen] = React.useState(true);
-  console.log(isOpen, "isOpen");
+  const [isOpen, setIsOpen] = React.useState(false);
 
   return (
     <div className="h-14 bg-blue-200 flex items-center sticky top-0 left-0 w-full z-20">
@@ -77,7 +76,7 @@ const MainHeader: React.FC = () => {
         </div>
       </div>
 
-      <BaseAuthModal visible={isOpen} onClose={() => setIsOpen(false)} />
+      <AuthModal visible={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };
