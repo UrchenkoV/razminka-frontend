@@ -3,7 +3,7 @@ import clsx from "clsx";
 import React, { FC, PropsWithChildren } from "react";
 
 interface IBaseActionWithIcon {
-  color?: "blue" | "red";
+  color?: "blue" | "red" | "gray";
   title?: string;
   count?: number;
 }
@@ -22,9 +22,11 @@ const BaseActionWithIcon: FC<PropsWithChildren<IBaseActionWithIcon>> = ({
       <div
         className={clsx(
           "p-1.5  rounded-full duration-300",
-          color === "blue"
-            ? "group-hover:bg-blue-100 group-hover:text-blue-500"
-            : "group-hover:bg-red-100 group-hover:text-red-500"
+          color === "blue" &&
+            "group-hover:bg-blue-100 group-hover:text-blue-500",
+          color === "red" && "group-hover:bg-red-100 group-hover:text-red-500",
+          color === "gray" &&
+            "group-hover:bg-gray-100 group-hover:text-gray-500"
         )}
       >
         {children}

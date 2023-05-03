@@ -14,7 +14,6 @@ const CommentsArea: FC = () => {
     try {
       const data = await Api().comment.getAll();
       setComments(data);
-      console.log(data, "get comments");
     } catch (err) {
       console.warn("Get comments right sidebar.", err);
     }

@@ -17,4 +17,9 @@ export const CommentApi = (instance: AxiosInstance) => ({
     });
     return data;
   },
+
+  async delete(commentId: number) {
+    const { data } = await instance.delete(`/comments/${commentId}`);
+    return data;
+  },
 });
