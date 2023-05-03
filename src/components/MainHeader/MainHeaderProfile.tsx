@@ -1,6 +1,7 @@
-import { getClassNames } from "@/utils/getClassName";
+
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon, UserIcon } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC, Fragment } from "react";
@@ -45,7 +46,7 @@ const MainHeaderProfile: FC = () => {
                 {({ active }) => (
                   <Link
                     href={item.link}
-                    className={getClassNames(
+                    className={clsx(
                       active ? "bg-gray-100" : "",
                       "block px-4 py-2 text-sm text-gray-700",
                       router.pathname === item.link ? "bg-gray-100" : ""

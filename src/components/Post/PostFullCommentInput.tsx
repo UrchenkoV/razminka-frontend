@@ -9,6 +9,7 @@ interface IPostFullCommentInput {
   onChange: (e: any) => void;
   closeBtn?: string;
   onClose?: (e: any) => void;
+  onClick?: (e: any) => void;
 }
 
 const PostFullCommentInput: FC<IPostFullCommentInput> = ({
@@ -17,6 +18,7 @@ const PostFullCommentInput: FC<IPostFullCommentInput> = ({
   onChange,
   closeBtn,
   onClose,
+  onClick,
 }) => {
   const [isFocus, setIsFocus] = React.useState(false);
 
@@ -37,12 +39,13 @@ const PostFullCommentInput: FC<IPostFullCommentInput> = ({
       />
       <div className="flex justify-end gap-1 mt-1">
         {closeBtn && (
-          <BaseButton onClick={onClose} title={closeBtn} type="transparent" />
+          <BaseButton onClick={onClose} title={closeBtn} color="transparent" />
         )}
         <BaseButton
           title="Отправить"
-          type="blue"
-          isDisabled={!Boolean(value)}
+          color="blue"
+          disabled={!Boolean(value)}
+          onClick={onClick}
         />
       </div>
     </div>

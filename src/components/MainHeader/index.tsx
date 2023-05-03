@@ -10,9 +10,18 @@ import React from "react";
 import BaseButton from "../BaseButton";
 import MainHeaderProfile from "./MainHeaderProfile";
 import AuthModal from "../AuthModal";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 const MainHeader: React.FC = () => {
+  const user = useSelector((state: RootState) => state.user.user);
   const [isOpen, setIsOpen] = React.useState(false);
+
+  React.useEffect(() => {
+    if (isOpen && user) {
+      setIsOpen(false);
+    }
+  }, [user, isOpen]);
 
   return (
     <div className="h-14 bg-blue-200 flex items-center sticky top-0 left-0 w-full z-20">
@@ -45,7 +54,7 @@ const MainHeader: React.FC = () => {
                 placeholder="Поиск"
               />
             </div>
-            <Link href={"/create"}>
+            <Link href={"/sozdat"}>
               <BaseButton>
                 <div className="flex items-center gap-1">
                   <PlusIcon className="w-4 h-4" aria-hidden="true" />
@@ -63,15 +72,17 @@ const MainHeader: React.FC = () => {
               />
             </div>
 
-            <div
-              onClick={() => setIsOpen(true)}
-              className="flex items-center gap-2 text-gray-700 hover:text-blue-500 duration-300 cursor-pointer"
-            >
-              <UserIcon className="w-6 h-6" />
-              <span className="font-bold mt-1">Войти</span>
-            </div>
-
-            <MainHeaderProfile />
+            {!user ? (
+              <div
+                onClick={() => setIsOpen(true)}
+                className="flex items-center gap-2 text-gray-700 hover:text-blue-500 duration-300 cursor-pointer"
+              >
+                <UserIcon className="w-6 h-6" />
+                <span className="font-bold mt-1">Войти</span>
+              </div>
+            ) : (
+              <MainHeaderProfile />
+            )}
           </div>
         </div>
       </div>

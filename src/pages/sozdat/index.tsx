@@ -1,20 +1,21 @@
-import CreateForm from "@/components/pages/Create/CreateForm";
+import PostCreateForm from "@/components/Post/PostCreateForm";
 import MainLayout from "@/layouts/MainLayout";
+import { makeTitle } from "@/utils/makeTitle";
 import { NextPage } from "next";
 import Head from "next/head";
 import React from "react";
 
-const CreatePage: NextPage = () => {
+const PostCreatePage: NextPage = () => {
   return (
     <MainLayout hideComments largeWidthConteiner>
       <Head>
-        <title>Создать запись</title>
+        <title>{makeTitle("Написать статью")}</title>
       </Head>
       <div className="bg-white rounded-xl shadow-sm p-5">
-        <CreateForm />
+        <PostCreateForm />
       </div>
     </MainLayout>
   );
 };
 
-export default CreatePage;
+export default PostCreatePage;

@@ -1,8 +1,15 @@
 import "@/styles/globals.scss";
 import type { AppProps } from "next/app";
+import { NextPageContext } from "next/types";
 import Head from "next/head";
+import { Provider } from "react-redux";
+import { wrapper } from "@/redux/store";
+import { setUserData } from "@/redux/user/userSlice";
+import { Api } from "@/utils/api";
 
-export default function App({ Component, pageProps }: AppProps) {
+function App({ Component, ...rest }: AppProps) {
+  const { store, props } = wrapper.useWrappedStore(rest);
+
   return (
     <>
       <Head>
@@ -10,7 +17,34 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Component {...props.pageProps} />
+      </Provider>
     </>
   );
 }
+
+App.getInitialProps = wrapper.getInitialPageProps((store) =>
+  // @ts-ignore
+  async ({ ctx }) => {
+    try {
+      const userData = await Api(ctx).user.getMe();
+
+      store.dispatch(setUserData(userData));
+
+      return { props: {} };
+    } catch (err) {
+      console.log(err, "error app file");
+      if (ctx.asPath === "/create") {
+        ctx.res.writeHead(302, {
+          Location: "/403",
+        });
+        ctx.res.end();
+      }
+
+      return { props: {} };
+    }
+  }
+);
+
+export default App;

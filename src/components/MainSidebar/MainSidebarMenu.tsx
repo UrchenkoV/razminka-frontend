@@ -1,10 +1,10 @@
-import { getClassNames } from "@/utils/getClassName";
 import {
   QueueListIcon,
   FireIcon,
   NewspaperIcon,
   EnvelopeIcon,
 } from "@heroicons/react/24/outline";
+import clsx from "clsx";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { FC } from "react";
@@ -42,7 +42,7 @@ const MainSidebarMenu: FC = () => {
         <Link
           href={item.link}
           key={item.title}
-          className={getClassNames(
+          className={clsx(
             "flex w-full justify-between  py-2 px-3 rounded-lg text-gray-700  duration-300 items-center",
             router.pathname === item.link
               ? "bg-white shadow-sm"
@@ -51,7 +51,7 @@ const MainSidebarMenu: FC = () => {
         >
           <>
             <div
-              className={getClassNames(
+              className={clsx(
                 "flex items-center gap-2",
                 router.pathname === item.link ? "text-blue-500" : ""
               )}

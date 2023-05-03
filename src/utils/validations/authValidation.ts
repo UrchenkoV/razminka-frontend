@@ -15,6 +15,12 @@ export const RegisterFormSchema = yup
   })
   .concat(LoginFormSchema);
 
-export type TLoginFormSchema = yup.InferType<typeof LoginFormSchema>;
+export type LoginDto = yup.InferType<typeof LoginFormSchema>;
 
-export type IRegisterFormSchema = yup.InferType<typeof RegisterFormSchema>;
+export type CreateUserDto = yup.InferType<typeof RegisterFormSchema>;
+
+export type ValidationErrorType = {
+  fullName?: string[];
+  email?: string[];
+  password?: string[];
+};
