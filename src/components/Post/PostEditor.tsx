@@ -14,6 +14,7 @@ const PostEditor: FC<IPostEditor> = ({ onChange, initialBlocks }) => {
       data: {
         blocks: initialBlocks,
       },
+      minHeight: 50,
       async onChange() {
         const { blocks } = await editor.save();
         onChange(blocks);

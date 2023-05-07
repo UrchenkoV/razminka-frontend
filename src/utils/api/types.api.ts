@@ -24,6 +24,8 @@ export type CommentCreateDto = {
   postId: number;
 };
 
+export type CommentsUpdateDto = Pick<CommentCreateDto, "text">;
+
 export interface IPostResponse {
   id: number;
   title: string;
@@ -34,7 +36,8 @@ export interface IPostResponse {
   createdAt: string;
   updatedAt: string;
   imageUrl: null | string;
-  user: UserResponse;
+  user: Pick<UserResponse, "id" | "fullName" | "avatarUrl">;
+  countComments?: number;
 }
 
 export type PostHeaderType = {

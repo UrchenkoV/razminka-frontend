@@ -19,3 +19,11 @@ body {
   margin-right: auto;
   padding: 0 20px;
 }
+
+@layer components {
+  .page-wrapper {
+    a {
+      @apply font-semibold text-blue-500 hover:text-blue-700 duration-300;
+    }
+  }
+}

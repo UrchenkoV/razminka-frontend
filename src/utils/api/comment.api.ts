@@ -1,5 +1,5 @@
 import { AxiosInstance } from "axios";
-import { CommentCreateDto, ICommentItem } from "./types.api";
+import { CommentCreateDto, CommentsUpdateDto, ICommentItem } from "./types.api";
 
 export const CommentApi = (instance: AxiosInstance) => ({
   async getAll() {
@@ -15,6 +15,16 @@ export const CommentApi = (instance: AxiosInstance) => ({
       text: dto.text,
       postId: dto.postId,
     });
+    return data;
+  },
+
+  async update(id: number, dto: CommentsUpdateDto) {
+    const { data } = await instance.patch<CommentsUpdateDto, { data: any }>(
+      `/comments/${id}`,
+      {
+        text: dto.text,
+      }
+    );
     return data;
   },
 

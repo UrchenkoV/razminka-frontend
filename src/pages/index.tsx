@@ -19,7 +19,7 @@ const HomePage: NextPage<IHomePage> = ({ posts = [] }) => {
       <MainLayout>
         <div className="flex flex-col gap-5">
           {posts.map((obj) => (
-            <PostItem key={obj.id} {...obj} />
+            <PostItem key={obj.id} post={obj} />
           ))}
         </div>
       </MainLayout>

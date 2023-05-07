@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, forwardRef } from "react";
 
 import PostFullCommentItem from "./PostFullCommentItem";
 import PostFullCommentInput from "./PostFullCommentInput";
@@ -9,60 +9,74 @@ import { useRouter } from "next/router";
 import { selectUser } from "@/redux/user/userSlice";
 import { useSelector } from "react-redux";
 
-const PostFullComments: FC<{ comments?: ICommentItem[] }> = ({
-  comments = [],
-}) => {
-  const router = useRouter();
-  const user = useSelector(selectUser);
-  const [comment, setComment] = React.useState("");
+type PostFullCommentsProps = {
+  comments?: ICommentItem[];
+};
 
-  const onSave = async () => {
-    try {
-      const id = router.query?.id;
+const PostFullComments = forwardRef<HTMLDivElement, PostFullCommentsProps>(
+  ({ comments = [] }, ref) => {
+    const router = useRouter();
+    const user = useSelector(selectUser);
+    const [comment, setComment] = React.useState("");
 
-      if (!id) return;
+    const onSave = async () => {
+      try {
+        const id = router.query?.id;
 
-      const data = await Api().comment.create({
-        text: comment,
-        postId: +id,
-      });
+        if (!id) return;
 
-      Object.assign(data, user);
+        const data = await Api().comment.create({
+          text: comment,
+          postId: +id,
+        });
 
-      comments.unshift(data);
-      setComment("");
-    } catch (err) {
-      console.warn("Create comment.", err);
-    }
-  };
+        Object.assign(data, user);
 
-  return (
-    <div className="bg-white pt-10 pb-5 rounded-xl shadow-sm">
-      <div className="wrapper-sm">
-        <h2 className="text-xl font-medium mb-7">
-          {[comments.length]}{" "}
-          {sklonenie(comments.length, [
-            "комментарий",
-            "комментария",
-            "комментариев",
-          ])}
-        </h2>
+        comments.unshift(data);
+        setComment("");
+      } catch (err) {
+        console.warn("Create comment.", err);
+      }
+    };
 
-        <PostFullCommentInput
-          value={comment}
-          placeholder="Написать комметарий..."
-          onChange={(e) => setComment(e.target.value)}
-          onClick={onSave}
-        />
+    return (
+      <div
+        ref={ref}
+        id="comments"
+        className="bg-white pt-10 pb-5 rounded-xl shadow-sm"
+      >
+        <div className="wrapper-sm">
+          <h2 className="text-xl font-medium mb-7">
+            {[comments.length]}{" "}
+            {sklonenie(comments.length, [
+              "комментарий",
+              "комментария",
+              "комментариев",
+            ])}
+          </h2>
 
-        <div className="mt-5 flex flex-col gap-5">
-          {comments.map((obj) => (
-            <PostFullCommentItem key={obj.id} comment={obj} />
-          ))}
+          {user.user ? (
+            <PostFullCommentInput
+              value={comment}
+              placeholder="Написать комметарий..."
+              onChange={(e) => setComment(e.target.value)}
+              onClick={onSave}
+            />
+          ) : (
+            <div className="text-center">
+              Войдите, чтобы написать комментарий.
+            </div>
+          )}
+
+          <div className="mt-5 flex flex-col gap-5">
+            {comments.map((obj) => (
+              <PostFullCommentItem key={obj.id} comment={obj} />
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+);
 
 export default PostFullComments;

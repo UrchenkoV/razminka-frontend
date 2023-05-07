@@ -5,10 +5,12 @@ import {
   HandThumbUpIcon,
   ShareIcon,
 } from "@heroicons/react/24/outline";
-import React from "react";
+import React, { FC } from "react";
 import BaseActionWithIcon from "../BaseActionWithIcon";
+import { IPostResponse } from "@/utils/api/types.api";
+import Link from "next/link";
 
-const PostActions = () => {
+const PostActions: FC<{ post: IPostResponse }> = ({ post }) => {
   return (
     <div className="flex justify-between gap-2">
       <div className="flex gap-2">
@@ -22,9 +24,11 @@ const PostActions = () => {
       </div>
 
       <div className="flex gap-2">
-        <BaseActionWithIcon count={7}>
-          <ChatBubbleOvalLeftIcon className="w-5 h-5" />
-        </BaseActionWithIcon>
+        <Link href={`/posts/${post.id}#comments`}>
+          <BaseActionWithIcon count={post?.countComments}>
+            <ChatBubbleOvalLeftIcon className="w-5 h-5" />
+          </BaseActionWithIcon>
+        </Link>
 
         <BaseActionWithIcon count={2} title="Опубликовать от себя">
           <ShareIcon className="w-5 h-5" />

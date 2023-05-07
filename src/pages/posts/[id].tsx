@@ -48,3 +48,6 @@ export const getServerSideProps = async (ctx: GetServerSidePropsContext) => {
     };
   }
 };
+function notFound() {
+  throw new Error("Function not implemented.");
+}

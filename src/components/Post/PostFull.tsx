@@ -41,7 +41,7 @@ const PostFull: FC<{ post: IPostResponse }> = ({ post }) => {
 
           <div className="flex justify-between items-center">
             <div className="flex gap-5">
-              <BaseActionWithIcon count={post.comments?.length}>
+              <BaseActionWithIcon count={post?.countComments}>
                 <ChatBubbleOvalLeftIcon className="w-5 h-5" />
               </BaseActionWithIcon>
               <BaseActionWithIcon title="В закладки">
@@ -58,16 +58,21 @@ const PostFull: FC<{ post: IPostResponse }> = ({ post }) => {
           </div>
         )}
 
-        <div className="flex flex-col gap-5 wrapper-sm my-5">
+        <div className="flex flex-col gap-5 wrapper-sm my-5 page-wrapper">
           {post.text.map((obj) => {
             if (obj.type === "paragraph") {
-              return <p key={obj.id}>{obj.data.text}</p>;
+              return (
+                <p
+                  key={obj.id}
+                  dangerouslySetInnerHTML={{ __html: obj.data.text }}
+                ></p>
+              );
             }
           })}
         </div>
 
         <div className="flex flex-col gap-5 wrapper-sm mt-5">
-          <PostActions />
+          <PostActions post={post} />
 
           <div className="flex justify-between gap-5 items-center">
             <PostAuthor

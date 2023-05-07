@@ -24,7 +24,7 @@ const CommentsArea: FC = () => {
   }, []);
 
   return (
-    <div className="pl-4 pr-10 max-w-xs h-full sticky top-14">
+    <div className="pl-4 pr-10 max-w-xs w-full h-full sticky top-14">
       <div
         onClick={() => setIsOpen(!isOpen)}
         className={clsx(

@@ -5,8 +5,12 @@ import Link from "next/link";
 import React, { FC } from "react";
 import BaseActionWithIcon from "../BaseActionWithIcon";
 import { PencilIcon } from "@heroicons/react/24/outline";
+import { selectUser } from "@/redux/user/userSlice";
+import { useSelector } from "react-redux";
 
 const PostHeader: FC<PostHeaderType> = ({ user, post }) => {
+  const userData = useSelector(selectUser);
+
   return (
     <div className="flex items-center justify-between px-5">
       <div className="flex items-center gap-2">
@@ -32,11 +36,13 @@ const PostHeader: FC<PostHeaderType> = ({ user, post }) => {
         </div>
       </div>
 
-      <Link href={`/sozdat/${post.id}`}>
-        <BaseActionWithIcon>
-          <PencilIcon className="w-4 h-4" />
-        </BaseActionWithIcon>
-      </Link>
+      {userData.user?.id === user.id && (
+        <Link href={`/sozdat/${post.id}`}>
+          <BaseActionWithIcon>
+            <PencilIcon className="w-4 h-4" />
+          </BaseActionWithIcon>
+        </Link>
+      )}
     </div>
   );
 };

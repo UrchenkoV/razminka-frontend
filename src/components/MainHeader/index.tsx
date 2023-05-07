@@ -54,14 +54,16 @@ const MainHeader: React.FC = () => {
                 placeholder="Поиск"
               />
             </div>
-            <Link href={"/sozdat"}>
-              <BaseButton>
-                <div className="flex items-center gap-1">
-                  <PlusIcon className="w-4 h-4" aria-hidden="true" />
-                  Создать
-                </div>
-              </BaseButton>
-            </Link>
+            {user && (
+              <Link href={"/sozdat"}>
+                <BaseButton>
+                  <div className="flex items-center gap-1">
+                    <PlusIcon className="w-4 h-4" aria-hidden="true" />
+                    Создать
+                  </div>
+                </BaseButton>
+              </Link>
+            )}
           </div>
 
           <div className="flex items-center gap-4">

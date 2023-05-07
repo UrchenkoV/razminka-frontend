@@ -10,6 +10,7 @@ interface IPostFullCommentInput {
   closeBtn?: string;
   onClose?: (e: any) => void;
   onClick?: (e: any) => void;
+  btnTitle?: string;
 }
 
 const PostFullCommentInput: FC<IPostFullCommentInput> = ({
@@ -19,6 +20,7 @@ const PostFullCommentInput: FC<IPostFullCommentInput> = ({
   closeBtn,
   onClose,
   onClick,
+  btnTitle = "Отправить",
 }) => {
   const [isFocus, setIsFocus] = React.useState(false);
 
@@ -42,7 +44,7 @@ const PostFullCommentInput: FC<IPostFullCommentInput> = ({
           <BaseButton onClick={onClose} title={closeBtn} color="transparent" />
         )}
         <BaseButton
-          title="Отправить"
+          title={btnTitle}
           color="blue"
           disabled={!Boolean(value)}
           onClick={onClick}
