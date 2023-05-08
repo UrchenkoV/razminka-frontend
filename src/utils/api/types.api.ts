@@ -49,3 +49,11 @@ export interface PostCreateDto {
   title: string;
   text: OutputData["blocks"];
 }
+
+export type SearchPostDto = {
+  title?: string;
+  text?: string;
+  limit?: number;
+  take?: number;
+  views?: "DESC" | "ASC";
+};

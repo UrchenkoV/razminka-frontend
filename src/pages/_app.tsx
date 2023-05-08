@@ -6,6 +6,7 @@ import { Provider } from "react-redux";
 import { wrapper } from "@/redux/store";
 import { setUserData } from "@/redux/user/userSlice";
 import { Api } from "@/utils/api";
+import React from "react";
 
 function App({ Component, ...rest }: AppProps) {
   const { store, props } = wrapper.useWrappedStore(rest);

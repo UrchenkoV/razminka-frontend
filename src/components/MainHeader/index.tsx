@@ -12,6 +12,7 @@ import MainHeaderProfile from "./MainHeaderProfile";
 import AuthModal from "../AuthModal";
 import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import MainHeaderSearch from "./MainHeaderSearch";
 
 const MainHeader: React.FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -47,13 +48,8 @@ const MainHeader: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-20">
-            <div className="">
-              <input
-                type="text"
-                className="py-2 px-3 rounded-xl w-[300px] bg-blue-100 hover:bg-white focus:outline-none border focus:border-blue-300 focus:ring-1 focus:ring-blue-300 focus:ring-offset-2 focus:bg-white text-slate-600 placeholder:text-slate-600 duration-300"
-                placeholder="Поиск"
-              />
-            </div>
+            <MainHeaderSearch />
+
             {user && (
               <Link href={"/sozdat"}>
                 <BaseButton>
